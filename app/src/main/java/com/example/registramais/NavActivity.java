@@ -18,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class NavActivity extends AppCompatActivity {
 
+
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override

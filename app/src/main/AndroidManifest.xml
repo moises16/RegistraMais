@@ -10,10 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RegistraMais">
         <activity
+            android:name=".MainActivity">
+        </activity>
+        <activity
             android:name=".NavActivity"
             android:label="@string/title_activity_nav"
-            android:theme="@style/Theme.RegistraMais.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+            android:theme="@style/Theme.RegistraMais.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
