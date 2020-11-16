@@ -22,4 +22,9 @@
         android:name="com.example.registramais.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/recyclerViewFragment"
+        android:name="com.example.registramais.RecyclerViewFragment"
+        android:label="fragment_recycler_view"
+        tools:layout="@layout/fragment_recycler_view" />
 </navigation>

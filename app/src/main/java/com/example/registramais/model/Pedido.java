@@ -1,14 +1,16 @@
 package com.example.registramais.model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Pedido implements Serializable {
     private String nomeCliente;
     private int numero;
-    private String endereco;
+    private String data;
 
-    public Product(String nomeCliente, int numero, String endereco) {
+    public Pedido(String nomeCliente, int numero, String data) {
         this.nomeCliente = nomeCliente;
         this.numero = numero;
-        this.endereco = endereco;
+        this.data = data;
     }
 
     public String getNomeCliente() {
@@ -27,11 +29,11 @@ public class Product {
         this.numero = numero;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getData() {
+        return data;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setData(String data) {
+        this.data = data;
     }
 }
