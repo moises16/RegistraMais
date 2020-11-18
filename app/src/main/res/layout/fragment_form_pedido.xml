@@ -38,7 +38,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Digite o endereço"
+        android:hint="Data ex: 00/00/00"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/editTextNumeroPedidos"
         app:layout_constraintStart_toStartOf="@+id/editTextNumeroPedidos"

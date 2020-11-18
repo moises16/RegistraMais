@@ -40,7 +40,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull PedidosAdapter.ViewHolder holder, int position) {
     Pedido pedido = pedidoList.get(position);
-    holder.vincula(pedido);
+    //holder.vincula(pedido);
     }
 
     @Override

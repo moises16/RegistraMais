@@ -33,7 +33,7 @@ public class RecyclerViewFragment extends Fragment {
     private static final int REQUEST_SAVE_CODE = 1;
     private static final int REQUEST_EDIT_PEDIDO = 2;
     private RecyclerView recyclerViewPedidos;
-    private List<Pedido> pedidoList;
+    public List<Pedido> pedidoList;
     private PedidosAdapter adapter;
     private FloatingActionButton floatingActionButtonPedido;
     public RecyclerViewFragment() {
@@ -57,9 +57,12 @@ public class RecyclerViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_recyclerViewFragment_to_formPedidoFragment);
-
             }
         });
+
+        Pedido pedido = (Pedido) getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
+        pedidoList.add(pedido);
+        adapter.notifyDataSetChanged();
         return view;
     }
 
@@ -81,16 +84,16 @@ public class RecyclerViewFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(recyclerViewPedidos);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data == null)return;
-        if (requestCode == REQUEST_SAVE_CODE && data.hasExtra(FormPedidoFragment.PEDIDO_SAVE)){
-            if (requestCode == Activity.RESULT_OK){
-                Pedido pedido = (Pedido)getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
-                pedidoList.add(pedido);
-                adapter.notifyDataSetChanged();
-            }
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (data == null)return;
+//        if (requestCode == REQUEST_SAVE_CODE && data.hasExtra(FormPedidoFragment.PEDIDO_SAVE)){
+//            if (requestCode == Activity.RESULT_OK){
+//                Pedido pedido = (Pedido)getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
+//                pedidoList.add(pedido);
+//                adapter.notifyDataSetChanged();
+//            }
+//        }
+//    }
 }

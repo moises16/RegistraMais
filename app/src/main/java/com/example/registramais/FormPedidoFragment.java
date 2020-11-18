@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,6 @@ public class FormPedidoFragment extends Fragment {
     private Button buttonAddProduto;
     private Button buttonVerProduto;
     private Button buttonSalvar;
-    private Intent intent;
     private Pedido pedido;
 
     public FormPedidoFragment() {
@@ -44,8 +44,15 @@ public class FormPedidoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_form_pedido, container, false);
         loadViews(view);
-        getInputForm(view);
-        buttonSalvar(view);
+        getInputForm();
+        buttonSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(PEDIDO_SAVE, pedido);
+                Navigation.findNavController(view).navigate(R.id.action_formPedidoFragment_to_recyclerViewFragment, bundle);
+            }
+        });
         return view;
     }
 
@@ -60,29 +67,20 @@ public class FormPedidoFragment extends Fragment {
 
     }
 
-    void buttonSalvar(View view){
-        buttonSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(PEDIDO_SAVE, pedido);
-                Navigation.findNavController(view).navigate(R.id.action_formPedidoFragment_to_recyclerViewFragment, bundle);
-            }
-        });
-    }
-
     private void loadForm(){
         nomeCliente.setText(pedido.getNomeCliente());
         numero.setText(pedido.getNumero());
         data.setText(pedido.getData());
     }
 
-    private void getInputForm(View view){
-        String nome = nomeCliente.getText().toString();
-        String numeroCliente = numero.getText().toString();
-        String dataTxt = data.getText().toString();
+    private void getInputForm(){
+        if (validaForm()) {
+            String nome = nomeCliente.getText().toString();
+            String numeroCliente = numero.getText().toString();
+            String dataTxt = data.getText().toString();
 
-        pedido = new Pedido(nome,numeroCliente,dataTxt);
+            pedido = new Pedido(nome, numeroCliente, dataTxt);
+        }
     }
 
     private void updatePedidoForm(){
@@ -91,6 +89,24 @@ public class FormPedidoFragment extends Fragment {
 
         pedido.setNomeCliente(nome);
         pedido.setNumero(valor);
+    }
+
+    private boolean validaForm(){
+        if (TextUtils.isEmpty(nomeCliente.getText())){
+            nomeCliente.setError("Informe o nome do cliente");
+            nomeCliente.requestFocus();
+            return false;
+        }
+        if (TextUtils.isEmpty(numero.getText())){
+            numero.setError("Informe o numero do cliente");
+            numero.requestFocus();
+            return false;
+        }if (TextUtils.isEmpty(data.getText())){
+            data.setError("Informe a data do pedido");
+            data.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     private void goToRecyclerViewFragment(String saveOrEditExtra){
