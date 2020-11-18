@@ -25,6 +25,19 @@
     <fragment
         android:id="@+id/recyclerViewFragment"
         android:name="com.example.registramais.RecyclerViewFragment"
-        android:label="fragment_recycler_view"
-        tools:layout="@layout/fragment_recycler_view" />
+        android:label="Lista de Pedidos"
+        tools:layout="@layout/fragment_recycler_view" >
+        <action
+            android:id="@+id/action_recyclerViewFragment_to_formPedidoFragment"
+            app:destination="@id/formPedidoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/formPedidoFragment"
+        android:name="com.example.registramais.FormPedidoFragment"
+        android:label="Pedido"
+        tools:layout="@layout/fragment_form_pedido" >
+        <action
+            android:id="@+id/action_formPedidoFragment_to_recyclerViewFragment"
+            app:destination="@id/recyclerViewFragment" />
+    </fragment>
 </navigation>

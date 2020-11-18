@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 
 import com.example.registramais.model.Pedido;
 
+import java.io.Serializable;
 import java.util.Enumeration;
 
 
@@ -41,9 +43,9 @@ public class FormPedidoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_form_pedido, container, false);
-
         loadViews(view);
-
+        getInputForm(view);
+        buttonSalvar(view);
         return view;
     }
 
@@ -62,13 +64,9 @@ public class FormPedidoFragment extends Fragment {
         buttonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if (intent.hasExtra(RecyclerViewFragment.EXTRA_EDIT_PEDIDO)){
-                updatePedidoForm();
-
-            }else{
-                getInputForm();
-
-            }
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(PEDIDO_SAVE, pedido);
+                Navigation.findNavController(view).navigate(R.id.action_formPedidoFragment_to_recyclerViewFragment, bundle);
             }
         });
     }
@@ -79,17 +77,17 @@ public class FormPedidoFragment extends Fragment {
         data.setText(pedido.getData());
     }
 
-    private void getInputForm(){
+    private void getInputForm(View view){
         String nome = nomeCliente.getText().toString();
-        int valor = Integer.parseInt(numero.getText().toString());
+        String numeroCliente = numero.getText().toString();
         String dataTxt = data.getText().toString();
 
-        pedido = new Pedido(nome,valor,dataTxt);
+        pedido = new Pedido(nome,numeroCliente,dataTxt);
     }
 
     private void updatePedidoForm(){
         String nome = nomeCliente.getText().toString();
-        int valor = Integer.parseInt(numero.getText().toString());
+        String valor = numero.getText().toString();
 
         pedido.setNomeCliente(nome);
         pedido.setNumero(valor);

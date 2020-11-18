@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class Pedido implements Serializable {
     private String nomeCliente;
-    private int numero;
+    private String numero;
     private String data;
 
-    public Pedido(String nomeCliente, int numero, String data) {
+    public Pedido(String nomeCliente, String numero, String data) {
         this.nomeCliente = nomeCliente;
         this.numero = numero;
         this.data = data;
@@ -21,11 +21,11 @@ public class Pedido implements Serializable {
         this.nomeCliente = nomeCliente;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

@@ -8,7 +8,7 @@
     tools:context=".RecyclerViewFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPedidos"
+        android:id="@+id/recyclerViewPedido"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,6 +24,6 @@
         android:layout_marginBottom="32dp"
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewPedidos"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPedidos" />
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewPedido"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewPedido" />
 </androidx.constraintlayout.widget.ConstraintLayout>

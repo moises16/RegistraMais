@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,20 +55,22 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
 
     public void removePedido(int adapterPosition){
         Pedido pedido = pedidoList.get(adapterPosition);
-
+        pedidoList.remove(adapterPosition);
+        notifyItemRemoved(adapterPosition);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewValor;
         private TextView textViewNome;
         private TextView textViewData;
+        private ImageView imageViewRecycler;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         textViewValor = itemView.findViewById(R.id.txtValorRecyclerPedidos);
         textViewNome = itemView.findViewById(R.id.txtNomeRecyclerPedidos);
         textViewData = itemView.findViewById(R.id.txtDataRecyclerPedidos);
-
+        imageViewRecycler = itemView.findViewById(R.id.imageViewRecyclerPedidos);
         }
 
         public void vincula(Pedido pedido) {

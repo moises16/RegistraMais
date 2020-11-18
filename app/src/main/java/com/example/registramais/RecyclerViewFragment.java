@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.registramais.model.Pedido;
 import com.example.registramais.recyclerviewpedidos.PedidoItemTouchHelper;
@@ -45,24 +49,24 @@ public class RecyclerViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.item_list_pedidos, container, false);
+        View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         pedidoList = new ArrayList<>();
         configRecyclerView(view);
         floatingActionButtonPedido = view.findViewById(R.id.floatingActionButtonTeste);
         floatingActionButtonPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FormPedidoFragment.class);
-                startActivity(intent);
+                Navigation.findNavController(view).navigate(R.id.action_recyclerViewFragment_to_formPedidoFragment);
+
             }
         });
         return view;
     }
 
     void configRecyclerView(View view){
-        recyclerViewPedidos = view.findViewById(R.id.recyclerViewPedidos);
-        recyclerViewPedidos.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new PedidosAdapter(getContext(), pedidoList);
+        recyclerViewPedidos = view.findViewById(R.id.recyclerViewPedido);
+        recyclerViewPedidos.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new PedidosAdapter(getActivity().getApplicationContext(), pedidoList);
         recyclerViewPedidos.setAdapter(adapter);
         adapter.setOnItemClickListener(new PedidoOnClickListener() {
             @Override
@@ -83,8 +87,9 @@ public class RecyclerViewFragment extends Fragment {
         if (data == null)return;
         if (requestCode == REQUEST_SAVE_CODE && data.hasExtra(FormPedidoFragment.PEDIDO_SAVE)){
             if (requestCode == Activity.RESULT_OK){
-                Pedido pedido = (Pedido) data.getSerializableExtra(FormPedidoFragment.PEDIDO_SAVE);
-
+                Pedido pedido = (Pedido)getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
+                pedidoList.add(pedido);
+                adapter.notifyDataSetChanged();
             }
         }
     }
