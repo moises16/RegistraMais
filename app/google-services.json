@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "24955525057",
+    "firebase_url": "https://registramais-17ab2.firebaseio.com",
+    "project_id": "registramais-17ab2",
+    "storage_bucket": "registramais-17ab2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24955525057:android:cde26db5ec8536120dc140",
+        "android_client_info": {
+          "package_name": "com.example.registramais"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "24955525057-crhja79uapp3ppgpgnpb7j5isub1ice7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3dk8SJlNHzuRvSa4UvbEagBR3zkQ9II"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "24955525057-crhja79uapp3ppgpgnpb7j5isub1ice7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
