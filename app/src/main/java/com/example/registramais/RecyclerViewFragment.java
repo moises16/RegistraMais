@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +24,14 @@ import com.example.registramais.model.Pedido;
 import com.example.registramais.recyclerviewpedidos.PedidoItemTouchHelper;
 import com.example.registramais.recyclerviewpedidos.PedidoOnClickListener;
 import com.example.registramais.recyclerviewpedidos.PedidosAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +41,14 @@ public class RecyclerViewFragment extends Fragment {
     public static final String EXTRA_EDIT_PEDIDO = "editPedido";
     private static final int REQUEST_SAVE_CODE = 1;
     private static final int REQUEST_EDIT_PEDIDO = 2;
+    private static final String PEDIDOS_COLLECTION = "pedidosTest";
+    private static final String TAG = "RecyclerViewFragment";
     private RecyclerView recyclerViewPedidos;
     public List<Pedido> pedidoList;
+    private FirebaseUser user;
     private PedidosAdapter adapter;
     private FloatingActionButton floatingActionButtonPedido;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     public RecyclerViewFragment() {
         // Required empty public constructor
     }
@@ -50,8 +63,11 @@ public class RecyclerViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseFirestore.getInstance();
         pedidoList = new ArrayList<>();
         configRecyclerView(view);
+        loadData(view);
         floatingActionButtonPedido = view.findViewById(R.id.floatingActionButtonTeste);
         floatingActionButtonPedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +75,13 @@ public class RecyclerViewFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_recyclerViewFragment_to_formPedidoFragment);
             }
         });
-
-        Pedido pedido = (Pedido) getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
-        pedidoList.add(pedido);
-        adapter.notifyDataSetChanged();
-        return view;
+            if (getArguments() != null) {
+                Pedido pedido = (Pedido) getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
+                db.collection(PEDIDOS_COLLECTION).add(pedido);
+                loadData(view);
+                adapter.notifyDataSetChanged();
+            }
+            return view;
     }
 
     void configRecyclerView(View view){
@@ -74,9 +92,7 @@ public class RecyclerViewFragment extends Fragment {
         adapter.setOnItemClickListener(new PedidoOnClickListener() {
             @Override
             public void itemClick(Pedido pedido) {
-                Intent intent = new Intent(getActivity(), FormPedidoFragment.class);
-                intent.putExtra(EXTRA_EDIT_PEDIDO, pedido);
-                startActivityForResult(intent, REQUEST_EDIT_PEDIDO);
+                Navigation.findNavController(view).navigate(R.id.action_recyclerViewFragment_to_formPedidoFragment);
             }
         });
 
@@ -84,16 +100,26 @@ public class RecyclerViewFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(recyclerViewPedidos);
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (data == null)return;
-//        if (requestCode == REQUEST_SAVE_CODE && data.hasExtra(FormPedidoFragment.PEDIDO_SAVE)){
-//            if (requestCode == Activity.RESULT_OK){
-//                Pedido pedido = (Pedido)getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
-//                pedidoList.add(pedido);
-//                adapter.notifyDataSetChanged();
-//            }
-//        }
-//    }
+
+    void loadData(View view){
+        db.collection(PEDIDOS_COLLECTION).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    pedidoList.clear();
+                    for (QueryDocumentSnapshot document : task.getResult()){
+                        Pedido pedido = document.toObject(Pedido.class);
+                        pedido.setId(document.getId());
+                        pedidoList.add(pedido);
+                    }
+                        configRecyclerView(view);
+                } else {
+                    Log.d(TAG, "Erro getting documents: ", task.getException());
+                }
+            }
+        });
+    }
+
+
+
 }

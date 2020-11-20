@@ -10,8 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.registramais.FormPedidoFragment;
 import com.example.registramais.R;
+import com.example.registramais.RecyclerViewFragment;
 import com.example.registramais.model.Pedido;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +43,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull PedidosAdapter.ViewHolder holder, int position) {
     Pedido pedido = pedidoList.get(position);
-    //holder.vincula(pedido);
+    holder.vincula(pedido);
     }
 
     @Override
@@ -55,6 +58,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
 
     public void removePedido(int adapterPosition){
         Pedido pedido = pedidoList.get(adapterPosition);
+        FirebaseFirestore.getInstance().collection("pedidosTest").document(pedido.getId()).delete();
         pedidoList.remove(adapterPosition);
         notifyItemRemoved(adapterPosition);
     }

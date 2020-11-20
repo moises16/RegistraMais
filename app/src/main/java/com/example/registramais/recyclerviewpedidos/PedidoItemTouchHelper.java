@@ -18,10 +18,10 @@ public class PedidoItemTouchHelper extends ItemTouchHelper.Callback {
 
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-        int startingPosition = viewHolder.getAdapterPosition();
-        int lastPosition = target.getAdapterPosition();
-
-        adapter.changePosition(startingPosition, lastPosition);
+//        int startingPosition = viewHolder.getAdapterPosition();
+//        int lastPosition = target.getAdapterPosition();
+//
+//        adapter.changePosition(startingPosition, lastPosition);
         return false;
     }
 

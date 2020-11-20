@@ -1,27 +1,31 @@
 package com.example.registramais.model;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Pedido implements Serializable {
-    private int id;
+    private String id;
     private String nomeCliente;
     private String numero;
     private String data;
 
-    public Pedido(String nomeCliente, String numero, String data) {
+    public Pedido(String nomeCliente, String numero) {
+        Locale BRAZIL = new Locale("pt", "BR");
         this.nomeCliente = nomeCliente;
         this.numero = numero;
-        this.data = data;
+        this.data = DateFormat.getDateInstance(DateFormat.MEDIUM, BRAZIL).format(Calendar.getInstance().getTime());
     }
 
     public Pedido() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
