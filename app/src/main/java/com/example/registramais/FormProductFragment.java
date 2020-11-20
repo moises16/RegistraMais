@@ -50,7 +50,7 @@ public class FormProductFragment extends Fragment {
                 getProductFromForm();
                 Bundle bundle=new Bundle();
                 bundle.putSerializable(PRODUCT_SAVE,product);
-                Navigation.findNavController(view).navigate(R.id.recyclerViewProductFragment,bundle);
+                Navigation.findNavController(view).navigate(R.id.action_formProductFragment_to_recyclerViewProductFragment,bundle);
             }
         });
         return view;
@@ -66,8 +66,8 @@ public class FormProductFragment extends Fragment {
         if (validateForm()) {
             String nomeproduto = txtProduct.getText().toString();
             String valorString = txtvalues.getText().toString();
-         // double valorproduct = Double.parseDouble(valorString);
-            product = new Product(nomeproduto, valorString);
+            double valorproduct = Double.parseDouble(valorString);
+            product = new Product(nomeproduto, valorproduct);
         }
     }
 

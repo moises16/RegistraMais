@@ -55,6 +55,7 @@ public class RecyclerViewProductFragment extends Fragment {
         productsList=new ArrayList<>();
         db = FirebaseFirestore.getInstance();
         configRecyclerView(view);
+        loadData(view);
         if (getArguments() !=null) {
             Product product = (Product) getArguments().getSerializable(FormProductFragment.PRODUCT_SAVE);
             db.collection(PRODUCTS_COLLECTION).add(product);
@@ -85,7 +86,7 @@ public class RecyclerViewProductFragment extends Fragment {
                                 productsList.add(product);
                             }
 
-
+                            configRecyclerView(view);
 
                         }
                     }

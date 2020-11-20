@@ -6,12 +6,15 @@ public class Product implements Serializable {
 
     private String id;
     private String nome;
-    private String valor;
+    private double valor;
 
 
-    public Product(String nome, String valor) {
+    public Product(String nome, double valor) {
         this.nome = nome;
         this.valor = valor;
+    }
+
+    public Product() {
     }
 
     public String getId() {
@@ -30,11 +33,11 @@ public class Product implements Serializable {
         this.nome = nome;
     }
 
-    public String getValorComoString() {
-        return String.valueOf(valor);
+    public double getValorComoString() {
+        return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 }

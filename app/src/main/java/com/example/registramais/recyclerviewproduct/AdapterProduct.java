@@ -64,7 +64,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         }
         void mergeViewData(Product products){
             textViewproduct.setText(products.getNome());
-            textViewValor.setText(products.getValorComoString());
+           // textViewValor.setText(products.getValorComoString());
         }
     }
 
