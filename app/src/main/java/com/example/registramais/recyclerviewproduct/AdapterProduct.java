@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.registramais.R;
 import com.example.registramais.model.Product;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder>{
     private Context context;
-    private List<Product> productList;
+    private List<Product> productsList;
     private  ProductsItemClickListener onClickListener;
 
 
-    public AdapterProduct(Context context, List<Product> productList) {
+    public AdapterProduct(Context context, List<Product> productsList) {
         this.context = context;
-        this.productList = productList;
+        this.productsList = productsList;
     }
 
     public void setOnClickListener(ProductsItemClickListener onClickListener) {
@@ -38,19 +39,19 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull AdapterProduct.ViewHolder holder, int position) {
-        Product product = productList.get(position);
+        Product product = productsList.get(position);
         holder.mergeViewData(product);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                onClickListener.onclick(product);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return productsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,8 +65,15 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         }
         void mergeViewData(Product products){
             textViewproduct.setText(products.getNome());
-           // textViewValor.setText(products.getValorComoString());
+            String valor = String.valueOf(products.getValor());
+            textViewValor.setText(valor);
         }
     }
 
+    public void removeProduct(int adapterPosition){
+        Product product = productsList.get(adapterPosition);
+        FirebaseFirestore.getInstance().collection(RecyclerViewProductFragment.PRODUCTS_COLLECTION).document(product.getId()).delete();
+        productsList.remove(adapterPosition);
+        notifyItemRemoved(adapterPosition);
+    }
 }

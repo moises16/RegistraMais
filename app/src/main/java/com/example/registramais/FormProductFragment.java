@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.registramais.model.Product;
 
+import java.io.Serializable;
 import java.security.PrivateKey;
 
 
@@ -24,7 +25,7 @@ public class FormProductFragment extends Fragment {
     private TextView txtProduct;
     private TextView txtvalues;
     private Button btnsave;
-    private  Product product;
+    private Product product;
 
     public FormProductFragment() {
         // Required empty public constructor
@@ -42,17 +43,24 @@ public class FormProductFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_form_product, container, false);
         carregaCampos(view);
 
+        //Recupera da outra tela para edição
+        if (getArguments()!= null) {
+            Product product = (Product) getArguments().getSerializable(PRODUCT_EDIT);
+            loadForm(product);
+        }
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
-                getProductFromForm();
-                Bundle bundle=new Bundle();
-                bundle.putSerializable(PRODUCT_SAVE,product);
-                Navigation.findNavController(view).navigate(R.id.action_formProductFragment_to_recyclerViewProductFragment,bundle);
+                       getProductFromForm();
+                       Bundle bundle = new Bundle();
+                       bundle.putSerializable(PRODUCT_SAVE, product);
+                       Navigation.findNavController(view).navigate(R.id.action_formProductFragment_to_recyclerViewProductFragment, bundle);
             }
         });
+
+
         return view;
     }
 
@@ -85,6 +93,21 @@ public class FormProductFragment extends Fragment {
         }
 
         return true;
+    }
+
+    void loadForm(Product product){
+        txtProduct.setText(product.getNome());
+        String valor = String.valueOf(product.getValor());
+        txtvalues.setText(valor);
+    }
+
+    void updateProduct(){
+        String nomeproduto = txtProduct.getText().toString();
+        String valorString = String.valueOf(txtvalues.getText());
+        double valor = Double.parseDouble(valorString);
+
+        product.setNome(nomeproduto);
+        product.setValor(valor);
     }
 }
 

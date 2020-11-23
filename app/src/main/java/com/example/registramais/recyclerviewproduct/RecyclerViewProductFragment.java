@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,17 +27,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewProductFragment extends Fragment {
-    private static final String PRODUCTS_COLLECTION = "produtos";
+    public static final String PRODUCTS_COLLECTION = "produtos";
     private static final String TAG = "RecyclerViewProductFragment";
     private AdapterProduct adapter;
     private List<Product> productsList;
     private RecyclerView recyclerViewproduct;
     private FirebaseFirestore db;
     private FirebaseUser user;
+    private Product product;
 
     public RecyclerViewProductFragment() {
 
@@ -56,10 +59,18 @@ public class RecyclerViewProductFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         configRecyclerView(view);
         loadData(view);
+
+        //Recupera da outra tela para salvar
         if (getArguments() !=null) {
             Product product = (Product) getArguments().getSerializable(FormProductFragment.PRODUCT_SAVE);
             db.collection(PRODUCTS_COLLECTION).add(product);
             loadData(view);
+
+
+//                Product product = (Product) getArguments().getSerializable(FormProductFragment.PRODUCT_EDIT);
+//                db.collection(PRODUCTS_COLLECTION).document(product.getId()).set(product);
+//                loadData(view);
+
         }
         return view;
     }
@@ -70,6 +81,17 @@ public class RecyclerViewProductFragment extends Fragment {
     adapter=new AdapterProduct(getActivity().getApplicationContext(),productsList);
     recyclerViewproduct.setAdapter(adapter);
 
+    adapter.setOnClickListener(new ProductsItemClickListener() {
+        @Override
+        public void onclick(Product product) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(FormProductFragment.PRODUCT_EDIT, product);
+            Navigation.findNavController(view).navigate(R.id.action_recyclerViewProductFragment_to_formProductFragment, bundle);
+        }
+    });
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ProductItemTouchHelper(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerViewproduct);
     }
     void loadData(View view){
         db.collection(PRODUCTS_COLLECTION)

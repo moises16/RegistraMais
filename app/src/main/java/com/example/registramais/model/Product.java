@@ -33,7 +33,7 @@ public class Product implements Serializable {
         this.nome = nome;
     }
 
-    public double getValorComoString() {
+    public double getValor() {
         return valor;
     }
 

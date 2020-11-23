@@ -26,7 +26,11 @@
         android:id="@+id/recyclerViewProductFragment"
         android:name="com.example.registramais.recyclerviewproduct.RecyclerViewProductFragment"
         android:label="Lista de Produtos"
-        tools:layout="@layout/fragment_recycler_view_product" />
+        tools:layout="@layout/fragment_recycler_view_product" >
+        <action
+            android:id="@+id/action_recyclerViewProductFragment_to_formProductFragment"
+            app:destination="@id/formProductFragment" />
+    </fragment>
     <fragment
         android:id="@+id/formProductFragment"
         android:name="com.example.registramais.FormProductFragment"
