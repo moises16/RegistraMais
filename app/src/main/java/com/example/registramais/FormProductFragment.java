@@ -26,6 +26,7 @@ public class FormProductFragment extends Fragment {
     private TextView txtvalues;
     private Button btnsave;
     private Product product;
+    private boolean formEdicao = false;
 
     public FormProductFragment() {
         // Required empty public constructor
@@ -46,6 +47,7 @@ public class FormProductFragment extends Fragment {
         //Recupera da outra tela para edição
         if (getArguments()!= null) {
             Product product = (Product) getArguments().getSerializable(PRODUCT_EDIT);
+            formEdicao = true;
             loadForm(product);
         }
 
@@ -53,11 +55,17 @@ public class FormProductFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-
+                    if (formEdicao){
+                        updateProduct();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(PRODUCT_EDIT, product);
+                        Navigation.findNavController(view).navigate(R.id.action_formProductFragment_to_recyclerViewProductFragment, bundle);
+                    }else {
                         getProductFromForm();
-                       Bundle bundle = new Bundle();
-                       bundle.putSerializable(PRODUCT_SAVE, product);
-                       Navigation.findNavController(view).navigate(R.id.action_formProductFragment_to_recyclerViewProductFragment, bundle);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(PRODUCT_SAVE, product);
+                        Navigation.findNavController(view).navigate(R.id.action_formProductFragment_to_recyclerViewProductFragment, bundle);
+                    }
             }
         });
 
@@ -107,8 +115,7 @@ public class FormProductFragment extends Fragment {
         String valorString = String.valueOf(txtvalues.getText());
         double valor = Double.parseDouble(valorString);
 
-        product.setNome(nomeproduto);
-        product.setValor(valor);
+        product = new Product(nomeproduto, valor);
     }
 }
 

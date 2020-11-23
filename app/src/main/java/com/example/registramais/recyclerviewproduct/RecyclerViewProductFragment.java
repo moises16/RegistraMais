@@ -40,6 +40,7 @@ public class RecyclerViewProductFragment extends Fragment {
     private FirebaseFirestore db;
     private FirebaseUser user;
     private Product product;
+    private boolean formEdicao = false;
 
     public RecyclerViewProductFragment() {
 
@@ -61,16 +62,17 @@ public class RecyclerViewProductFragment extends Fragment {
         loadData(view);
 
         //Recupera da outra tela para salvar
-        if (getArguments() !=null) {
-            Product product = (Product) getArguments().getSerializable(FormProductFragment.PRODUCT_SAVE);
-            db.collection(PRODUCTS_COLLECTION).add(product);
-            loadData(view);
+        if (getArguments()!= null) {
+            if (formEdicao) {
+                product = (Product) getArguments().getSerializable(FormProductFragment.PRODUCT_EDIT);
+                db.collection(PRODUCTS_COLLECTION).document(product.getId()).set(product);
+                loadData(view);
 
-
-//                Product product = (Product) getArguments().getSerializable(FormProductFragment.PRODUCT_EDIT);
-//                db.collection(PRODUCTS_COLLECTION).document(product.getId()).set(product);
-//                loadData(view);
-
+            } else {
+                product = (Product) getArguments().getSerializable(FormProductFragment.PRODUCT_SAVE);
+                db.collection(PRODUCTS_COLLECTION).add(product);
+                loadData(view);
+            }
         }
         return view;
     }
