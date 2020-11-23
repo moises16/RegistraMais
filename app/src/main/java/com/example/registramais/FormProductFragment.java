@@ -53,7 +53,8 @@ public class FormProductFragment extends Fragment {
             @Override
 
             public void onClick(View v) {
-                       getProductFromForm();
+
+                        getProductFromForm();
                        Bundle bundle = new Bundle();
                        bundle.putSerializable(PRODUCT_SAVE, product);
                        Navigation.findNavController(view).navigate(R.id.action_formProductFragment_to_recyclerViewProductFragment, bundle);
