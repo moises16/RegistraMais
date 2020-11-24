@@ -18,11 +18,12 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
         <item
-            android:id="@+id/recyclerViewFragment"
+            android:id="@+id/formProductFragment"
             android:icon="@android:drawable/ic_menu_add"
-            android:title="Lista" />
+            android:title="Adicionar produtos" />
         <item
-            android:id="@+id/formPedidoFragment"
-            android:title="Novo Pedido" />
+            android:id="@+id/recyclerViewProductFragment"
+            android:icon="@drawable/ic_baseline_list_24"
+            android:title="Lista de produtos" />
     </group>
 </menu>

@@ -23,21 +23,20 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
-        android:id="@+id/recyclerViewFragment"
-        android:name="com.example.registramais.RecyclerViewFragment"
-        android:label="Lista de Pedidos"
-        tools:layout="@layout/fragment_recycler_view" >
+        android:id="@+id/recyclerViewProductFragment"
+        android:name="com.example.registramais.recyclerviewproduct.RecyclerViewProductFragment"
+        android:label="Lista de Produtos"
+        tools:layout="@layout/fragment_recycler_view_product" >
         <action
-            android:id="@+id/action_recyclerViewFragment_to_formPedidoFragment"
-            app:destination="@id/formPedidoFragment" />
+            android:id="@+id/action_recyclerViewProductFragment_to_formProductFragment"
+            app:destination="@id/formProductFragment" />
     </fragment>
     <fragment
-        android:id="@+id/formPedidoFragment"
-        android:name="com.example.registramais.FormPedidoFragment"
-        android:label="Pedido"
-        tools:layout="@layout/fragment_form_pedido" >
+        android:id="@+id/formProductFragment"
+        android:name="com.example.registramais.FormProductFragment"
+        android:label="Adicionar produtos">
         <action
-            android:id="@+id/action_formPedidoFragment_to_recyclerViewFragment"
-            app:destination="@id/recyclerViewFragment" />
+            android:id="@+id/action_formProductFragment_to_recyclerViewProductFragment"
+            app:destination="@id/recyclerViewProductFragment" />
     </fragment>
 </navigation>
