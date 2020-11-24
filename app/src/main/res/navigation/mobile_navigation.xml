@@ -12,17 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.registramais.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.registramais.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-    <fragment
         android:id="@+id/recyclerViewProductFragment"
         android:name="com.example.registramais.recyclerviewproduct.RecyclerViewProductFragment"
         android:label="Lista de Produtos"
@@ -39,4 +28,30 @@
             android:id="@+id/action_formProductFragment_to_recyclerViewProductFragment"
             app:destination="@id/recyclerViewProductFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/formPedidoFragment"
+        android:name="com.example.registramais.FormPedidoFragment"
+        android:label="fragment_form_pedido"
+        tools:layout="@layout/fragment_form_pedido" >
+        <action
+            android:id="@+id/action_formPedidoFragment_to_recyclerViewFragment"
+            app:destination="@id/recyclerViewFragment" />
+        <action
+            android:id="@+id/action_formPedidoFragment_to_recyclerItemProdutoFragment"
+            app:destination="@id/recyclerItemProdutoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recyclerViewFragment"
+        android:name="com.example.registramais.RecyclerViewFragment"
+        android:label="fragment_recycler_view"
+        tools:layout="@layout/fragment_recycler_view" >
+        <action
+            android:id="@+id/action_recyclerViewFragment_to_formPedidoFragment"
+            app:destination="@id/formPedidoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recyclerItemProdutoFragment"
+        android:name="com.example.registramais.recyclerviewitemproduto.RecyclerItemProdutoFragment"
+        android:label="fragment_recycler_item_produto"
+        tools:layout="@layout/fragment_recycler_item_produto" />
 </navigation>

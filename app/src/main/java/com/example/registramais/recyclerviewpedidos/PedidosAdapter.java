@@ -74,7 +74,6 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
         textViewValor = itemView.findViewById(R.id.txtValorRecyclerPedidos);
         textViewNome = itemView.findViewById(R.id.txtNomeRecyclerPedidos);
         textViewData = itemView.findViewById(R.id.txtDataRecyclerPedidos);
-        imageViewRecycler = itemView.findViewById(R.id.imageViewRecyclerPedidos);
         }
 
         public void vincula(Pedido pedido) {

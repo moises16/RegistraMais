@@ -10,11 +10,23 @@ public class Pedido implements Serializable {
     private String nomeCliente;
     private String numero;
     private String data;
+    private String nomeProduto;
+    private double valorProduto;
 
     public Pedido(String nomeCliente, String numero) {
         Locale BRAZIL = new Locale("pt", "BR");
         this.nomeCliente = nomeCliente;
         this.numero = numero;
+
+        this.data = DateFormat.getDateInstance(DateFormat.MEDIUM, BRAZIL).format(Calendar.getInstance().getTime());
+    }
+
+    public Pedido(String nomeCliente, String numero,String nomeProduto, double valorProduto) {
+        Locale BRAZIL = new Locale("pt", "BR");
+        this.nomeCliente = nomeCliente;
+        this.numero = numero;
+        this.nomeProduto = nomeProduto;
+        this.valorProduto = valorProduto;
         this.data = DateFormat.getDateInstance(DateFormat.MEDIUM, BRAZIL).format(Calendar.getInstance().getTime());
     }
 

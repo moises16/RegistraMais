@@ -10,13 +10,13 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/formPedidoFragment"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Fazer Pedido" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/recyclerViewFragment"
+            android:icon="@drawable/ic_baseline_list_24"
+            android:title="Lista de Pedidos" />
         <item
             android:id="@+id/formProductFragment"
             android:icon="@android:drawable/ic_menu_add"

@@ -38,9 +38,6 @@ import java.util.List;
 
 
 public class RecyclerViewFragment extends Fragment {
-    public static final String EXTRA_EDIT_PEDIDO = "editPedido";
-    private static final int REQUEST_SAVE_CODE = 1;
-    private static final int REQUEST_EDIT_PEDIDO = 2;
     private static final String PEDIDOS_COLLECTION = "pedidosTest";
     private static final String TAG = "RecyclerViewFragment";
     private RecyclerView recyclerViewPedidos;
@@ -68,13 +65,7 @@ public class RecyclerViewFragment extends Fragment {
         pedidoList = new ArrayList<>();
         configRecyclerView(view);
         loadData(view);
-        floatingActionButtonPedido = view.findViewById(R.id.floatingActionButtonTeste);
-        floatingActionButtonPedido.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_recyclerViewFragment_to_formPedidoFragment);
-            }
-        });
+
             if (getArguments() != null) {
                 Pedido pedido = (Pedido) getArguments().getSerializable(FormPedidoFragment.PEDIDO_SAVE);
                 db.collection(PEDIDOS_COLLECTION).add(pedido);
