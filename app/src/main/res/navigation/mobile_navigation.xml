@@ -44,7 +44,7 @@
         android:id="@+id/recyclerViewFragment"
         android:name="com.example.registramais.RecyclerViewFragment"
         android:label="fragment_recycler_view"
-        tools:layout="@layout/fragment_recycler_view" >
+        tools:layout="@layout/fragment_recycler_view_pedido" >
         <action
             android:id="@+id/action_recyclerViewFragment_to_formPedidoFragment"
             app:destination="@id/formPedidoFragment" />
