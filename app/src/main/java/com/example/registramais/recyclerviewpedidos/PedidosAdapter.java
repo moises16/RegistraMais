@@ -71,8 +71,8 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-        textViewValor = itemView.findViewById(R.id.txtValorRecyclerPedidos);
-        textViewNome = itemView.findViewById(R.id.txtNomeRecyclerPedidos);
+        textViewNome = itemView.findViewById(R.id.txtValorRecyclerPedidos);
+        textViewValor = itemView.findViewById(R.id.txtNomeRecyclerPedidos);
         textViewData = itemView.findViewById(R.id.txtDataRecyclerPedidos);
         }
 

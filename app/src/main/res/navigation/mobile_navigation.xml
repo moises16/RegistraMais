@@ -52,6 +52,6 @@
     <fragment
         android:id="@+id/recyclerItemProdutoFragment"
         android:name="com.example.registramais.recyclerviewitemproduto.RecyclerItemProdutoFragment"
-        android:label="fragment_recycler_item_produto"
+        android:label="Lista de Produtos"
         tools:layout="@layout/fragment_recycler_item_produto" />
 </navigation>
