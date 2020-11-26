@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.registramais.model.ItemList;
 import com.example.registramais.model.Pedido;
 import com.example.registramais.model.Product;
 import com.example.registramais.recyclerviewitemproduto.AdapterItemProduct;

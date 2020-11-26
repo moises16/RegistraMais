@@ -1,8 +1,14 @@
 package com.example.registramais.model;
 
-public class ItemList {
+public class ItemList extends Product {
     private Product product;
     private int qtdProduct;
+
+    public ItemList(String nome, double valor, int qtdProduct) {
+        super(nome, valor);
+        this.product = product;
+        this.qtdProduct = qtdProduct;
+    }
 
     public ItemList(Product product, int qtdProduct) {
         this.product = product;
@@ -21,7 +27,7 @@ public class ItemList {
         return qtdProduct;
     }
 
-    public void setQtdProduct(int qtdProduct) {
+    public void setQtdProduct(int qtdProduct)  {
         this.qtdProduct = qtdProduct;
     }
 }

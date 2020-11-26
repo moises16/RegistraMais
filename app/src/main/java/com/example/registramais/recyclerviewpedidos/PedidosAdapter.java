@@ -77,8 +77,8 @@ public class PedidosAdapter extends RecyclerView.Adapter<PedidosAdapter.ViewHold
         }
 
         public void vincula(Pedido pedido) {
-            textViewValor.setText(pedido.getNumero());
-            textViewNome.setText(pedido.getNomeCliente());
+            textViewNome.setText(pedido.getNumero());
+            textViewValor.setText(pedido.getNomeCliente());
             textViewData.setText(pedido.getData());
 
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -13,7 +13,7 @@ public class Pedido implements Serializable {
     private String data;
     private List<ItemList> itemLists;
 
-    public Pedido(String nomeCliente, String numero, List itemLists) {
+    public Pedido(String nomeCliente, String numero, List<ItemList> itemLists) {
         Locale BRAZIL = new Locale("pt", "BR");
         this.nomeCliente = nomeCliente;
         this.numero = numero;
@@ -21,6 +21,12 @@ public class Pedido implements Serializable {
         this.data = DateFormat.getDateInstance(DateFormat.MEDIUM, BRAZIL).format(Calendar.getInstance().getTime());
     }
 
+    public Pedido(String nomeCliente, String numero) {
+        Locale BRAZIL = new Locale("pt", "BR");
+        this.nomeCliente = nomeCliente;
+        this.numero = numero;
+        this.data = DateFormat.getDateInstance(DateFormat.MEDIUM, BRAZIL).format(Calendar.getInstance().getTime());
+    }
 
     public Pedido() {
     }

@@ -20,14 +20,15 @@
         android:id="@+id/textViewValorProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="R$10.00"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="10.00"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewNomeProduto"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewNomeProduto"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNomeProduto" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnAdicionar"
@@ -65,4 +66,17 @@
         app:layout_constraintEnd_toStartOf="@+id/btnAdicionar"
         app:layout_constraintStart_toEndOf="@+id/btnRemover"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="R$"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNomeProduto"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewNomeProduto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeProduto" />
 </androidx.constraintlayout.widget.ConstraintLayout>

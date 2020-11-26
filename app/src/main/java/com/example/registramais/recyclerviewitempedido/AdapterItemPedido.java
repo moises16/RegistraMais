@@ -10,18 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.registramais.R;
+import com.example.registramais.model.ItemList;
 import com.example.registramais.model.Product;
 
 import java.util.List;
 
 public class AdapterItemPedido extends RecyclerView.Adapter<AdapterItemPedido.ViewHolder> {
     private Context context;
-    private List<Product> productItemListPedido;
+    private List<ItemList> productItemListPedido;
 
-    public AdapterItemPedido(Context context, List<Product> productItemListPedido) {
+
+    public AdapterItemPedido(Context context, List<ItemList> productItemListPedido) {
         this.context = context;
         this.productItemListPedido = productItemListPedido;
     }
+
     @NonNull
     @Override
     public AdapterItemPedido.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,8 +34,8 @@ public class AdapterItemPedido extends RecyclerView.Adapter<AdapterItemPedido.Vi
 
     @Override
     public void onBindViewHolder(@NonNull AdapterItemPedido.ViewHolder holder, int position) {
-        Product product = productItemListPedido.get(position);
-        holder.mergeViewData(product);
+        ItemList itemList = productItemListPedido.get(position);
+        holder.mergeViewData(itemList);
     }
 
     @Override
@@ -45,16 +48,25 @@ public class AdapterItemPedido extends RecyclerView.Adapter<AdapterItemPedido.Vi
         private TextView txtValorItemPedido;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             txtNomeItemPedido = itemView.findViewById(R.id.textViewNomeItemListPedido);
             txtValorItemPedido = itemView.findViewById(R.id.textViewValorItemListPedido);
 
+
         }
 
-        public void mergeViewData(Product product) {
-            txtNomeItemPedido.setText(product.getNome());
-            String valor = String.valueOf(product.getValor());
-            txtValorItemPedido.setText(valor);
+        public void mergeViewData(ItemList itemList) {
+            String nome = String.valueOf(itemList.getNome());
+            txtNomeItemPedido.setText(nome);
+            String valor = String.valueOf(itemList.getValor());
+            txtNomeItemPedido.setText(valor);
+            String qtd = String.valueOf(itemList.getQtdProduct());
+            txtValorItemPedido.setText(qtd);
         }
+    }
+
+    public void removeItemPedido(int adapterPosition){
+        ItemList itemList = productItemListPedido.get(adapterPosition);
+        productItemListPedido.remove(adapterPosition);
+        notifyItemRemoved(adapterPosition);
     }
 }

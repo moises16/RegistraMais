@@ -32,7 +32,7 @@ import java.util.List;
 
 
 public class RecyclerViewFragment extends Fragment {
-    private static final String PEDIDOS_COLLECTION = "pedidosTest";
+    private static final String PEDIDOS_COLLECTION = "pedidos";
     private static final String TAG = "RecyclerViewFragment";
     private RecyclerView recyclerViewPedidos;
     public List<Pedido> pedidoList;
