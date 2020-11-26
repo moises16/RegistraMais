@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
         if (user != null){
             Intent intent = new Intent(this, NavActivity.class);
             startActivity(intent);
+        }else{
+            Toast.makeText(this,"Erro ao logar",
+                    Toast.LENGTH_SHORT).show();
         }
     }
     }

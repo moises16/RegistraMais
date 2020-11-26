@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".FormPedidoFragment">
 
     <EditText
@@ -12,13 +13,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="136dp"
         android:layout_marginEnd="25dp"
         android:ems="10"
         android:hint="Digite o nome"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,10 +27,12 @@
         android:id="@+id/editTextNumeroPedidos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:hint="Telefone/Celular"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/editTextNomePedidos"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextNomePedidos"
         app:layout_constraintTop_toBottomOf="@+id/editTextNomePedidos" />
 
@@ -39,17 +42,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
+        android:background="@color/purple_200"
+        android:backgroundTint="#FF5722"
         android:text="Adicionar Pratos"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/editTextNumeroPedidos"
         app:layout_constraintStart_toStartOf="@+id/editTextNumeroPedidos"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumeroPedidos" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumeroPedidos"
+        app:rippleColor="#000000" />
 
     <Button
         android:id="@+id/btnVerPedidos"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="56dp"
+        android:background="#FFFFFF"
         android:text="Ver Pedido"
         app:layout_constraintEnd_toEndOf="@+id/btnAddPratosPedidos"
         app:layout_constraintHorizontal_bias="0.48"

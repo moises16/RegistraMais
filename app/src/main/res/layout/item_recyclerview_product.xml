@@ -7,6 +7,7 @@
     tools:ignore="ExtraText">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         app:cardCornerRadius="1dp"
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:background="#F66464"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -39,7 +41,9 @@
                 android:layout_height="wrap_content"
                 android:text="R$ 30,00"
                 android:textSize="18sp" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.cardview.widget.CardView>
 
 

@@ -61,7 +61,7 @@ public class FormPedidoFragment extends Fragment {
         buttonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getInputForm();
+             //   getInputForm();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(PEDIDO_SAVE, pedido);
                 Navigation.findNavController(view).navigate(R.id.action_formPedidoFragment_to_recyclerViewFragment, bundle);
@@ -87,18 +87,18 @@ public class FormPedidoFragment extends Fragment {
     }
 
 //    private void loadForm(){
-//        nomeCliente.setText(pedido.getNomeCliente());
-//        numero.setText(pedido.getNumero());
-//        data.setText(pedido.getData());
+//    nomeCliente.setText(pedido.getNomeCliente());
+//    numero.setText(pedido.getNumero());
+//    data.setText(pedido.getData());
 //    }
 
-    private void getInputForm(){
-        if (validaForm()) {
-            String nome = nomeCliente.getText().toString();
-            String numeroCliente = numero.getText().toString();
-            pedido = new Pedido(nome, numeroCliente);
-        }
-    }
+  //  private void getInputForm(){
+  //      if (validaForm()) {
+  //          String nome = nomeCliente.getText().toString();
+  //          String numeroCliente = numero.getText().toString();
+  //          pedido = new Pedido(nome, numeroCliente);
+  //      }
+  //  }
 
 //    private void updatePedidoForm(){
 //        String nome = nomeCliente.getText().toString();
