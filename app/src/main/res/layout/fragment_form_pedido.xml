@@ -54,9 +54,9 @@
     <Button
         android:id="@+id/btnVerPedidos"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_width="163dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
         android:background="#FFFFFF"
         android:text="Ver Pedido"
         app:layout_constraintEnd_toEndOf="@+id/btnAddPratosPedidos"
@@ -67,15 +67,12 @@
     <Button
         android:id="@+id/btnSalvarFormPedidos"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="163dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="25dp"
         android:text="Salvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/btnVerPedidos"
+        app:layout_constraintStart_toStartOf="@+id/btnVerPedidos"
+        app:layout_constraintTop_toBottomOf="@+id/btnVerPedidos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
