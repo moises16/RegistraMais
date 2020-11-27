@@ -88,7 +88,7 @@ public class RecyclerViewProductFragment extends Fragment {
         public void onclick(Product product) {
             Bundle bundle = new Bundle();
             bundle.putSerializable(FormProductFragment.PRODUCT_EDIT, product);
-            Navigation.findNavController(view).navigate(R.id.action_recyclerViewProductFragment_to_formProductFragment, bundle);
+            //Navigation.findNavController(view).navigate(R.id.action_recyclerViewProductFragment_to_formProductFragment, bundle);
         }
     });
 

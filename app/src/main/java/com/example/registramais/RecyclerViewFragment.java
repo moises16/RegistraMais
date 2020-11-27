@@ -77,7 +77,7 @@ public class RecyclerViewFragment extends Fragment {
         adapter.setOnItemClickListener(new PedidoOnClickListener() {
             @Override
             public void itemClick(Pedido pedido) {
-                Navigation.findNavController(view).navigate(R.id.action_recyclerViewFragment_to_formPedidoFragment);
+//                Navigation.findNavController(view).navigate(R.id.action_recyclerViewFragment_to_formPedidoFragment);
             }
         });
 
